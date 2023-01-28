@@ -1,21 +1,30 @@
+package Shape;
+
+import Board.Board;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-public class ShapeAffineDecorator implements IShape{
+public class ShapeAffineDecorator implements IShape {
 
     private IShape decorated;
-    private AffineTransform transform;
 
-    public ShapeAffineDecorator(IShape shape, int x, int y)
+    public ShapeAffineDecorator(IShape shape)
     {
         decorated = shape;
-        transform = new AffineTransform();
-        transform.translate(Board.ZEROX + 2 * Board.ZEROX * x, Board.ZEROY + 2 * Board.ZEROY * y);
-        transform.scale(TILESIZE-6, TILESIZE-6);
     }
+
+    @Override
+    public ShapeEnum getChosen() {
+        return decorated.getChosen();
+    }
+
     @Override
     public void draw(Graphics2D g, int x, int y) {
         AffineTransform save = g.getTransform();
+        AffineTransform transform = new AffineTransform();
+        transform.translate(Board.ZEROX + x * TILESIZE, Board.ZEROY + y * TILESIZE);
+        transform.scale(TILESIZE-6, TILESIZE-6);
         g.transform(transform);
         decorated.draw(g, x, y);
         g.setTransform(save);

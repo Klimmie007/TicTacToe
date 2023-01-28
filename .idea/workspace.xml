@@ -5,20 +5,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1dd3855-e138-48fa-b0d1-d49291e02089" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TicTacToe.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Board.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/BoardPartsSingleton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GameState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/IShape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Shape.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ShapeAffineDecorator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ShapeEnum.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TicTacToe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/img/board3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Command/ICommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Command/MoveCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Command/UndoCommand.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Game/MatchState.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GamePage/GameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GamePage/GameModel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/GamePage/GameView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board$Builder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/BoardPartsSingleton.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GameState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/IShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Shape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/ShapeAffineDecorator.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/ShapeEnum.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToe$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/BoardPartsSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/BoardPartsSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/GameState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/IShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/Shape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ShapeAffineDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/ShapeAffineDecorator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ShapeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/ShapeEnum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TicTacToe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/TicTacToe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,9 +42,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
+        <option value="Class" />
         <option value="Interface" />
         <option value="Enum" />
-        <option value="Class" />
       </list>
     </option>
   </component>
