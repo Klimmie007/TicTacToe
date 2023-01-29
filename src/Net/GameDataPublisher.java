@@ -14,6 +14,7 @@ public class GameDataPublisher {
 
     public void sendMessage(String message, InetAddress address) throws IOException, CouldNotConnectToSocketException {
         Socket socket = new Socket(address.getHostName(), GameDataReceiver.SOCKETSERVER_PORT);
+        socket.setSoTimeout(10*1000); // 10s
         DataOutputStream os = new DataOutputStream(socket.getOutputStream());
         if (socket == null || os == null) {
             throw new CouldNotConnectToSocketException();
