@@ -18,10 +18,11 @@ public class TicTacToe {
     {
         return board;
     }
+    private Board.Builder builder;
 
     public TicTacToe(MatchSetupModel model)
     {
-        Board.Builder builder = new Board.Builder();
+        builder = new Board.Builder();
         if(!model.standard)
         {
             builder.setRowsAndColumns(model.rows, model.columns);
@@ -45,5 +46,11 @@ public class TicTacToe {
     public MatchState getState()
     {
         return state;
+    }
+
+    public void rematch()
+    {
+        board = builder.build();
+        state = MatchState.ONGOING;
     }
 }

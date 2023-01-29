@@ -5,22 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1dd3855-e138-48fa-b0d1-d49291e02089" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/MainWindow/MainWindowSingleton.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatchSetupPage/MatchSetupController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatchSetupPage/MatchSetupModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatchSetupPage/MatchSetupView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Game/TicTacToe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Game/TicTacToe.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$1.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$2.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameView.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game/TicTacToe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/TicTacToe.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GamePage/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePage/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/GamePage/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePage/GameView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shape/ShapeAffineDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/ShapeAffineDecorator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

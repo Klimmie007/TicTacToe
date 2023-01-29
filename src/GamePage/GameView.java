@@ -1,6 +1,9 @@
 package GamePage;
 
 import Board.Board;
+import Board.GameState;
+import Game.MatchState;
+import Shape.IShape;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -48,6 +51,43 @@ public class GameView extends JPanel {
     protected void paintComponent(Graphics g) {
         Graphics2D graphics = (Graphics2D) g;
         graphics.drawImage(image, 0, 0, null);
+    }
+
+    public void updateView(GameModel model)
+    {
+        setImage(model.getBoard());
+        switch(model.getGame().getState())
+        {
+            case FINISHED -> {
+                Graphics2D g = (Graphics2D) image.getGraphics();
+                g.setPaint(new Color(0f, 0f, 0f, 0.7f));
+                g.fillRect(IShape.TILESIZE, IShape.TILESIZE, IShape.TILESIZE, IShape.TILESIZE);
+                g.setPaint(Color.white);
+                String result;
+                switch (model.getBoard().getState())
+                {
+                    case DRAW -> {
+                        result = "It's a draw!";
+                        break;
+                    }
+                    case CROSS_WON -> {
+                        result = "Cross won!";
+                        break;
+                    }
+                    case CIRCLE_WON -> {
+                        result = "Circle won!";
+                        break;
+                    }
+                    default -> {
+                        result = "FUCK";
+                        break;
+                    }
+                }
+                g.drawString(result, (float)(IShape.TILESIZE * 1.2), (float) (IShape.TILESIZE * 1.2));
+                g.drawString("Click to offer a rematch...", (float)(IShape.TILESIZE * 1.2), (float) (IShape.TILESIZE * 1.3));
+            }
+        }
+        repaint();
     }
 
     public void setImage(Board board) {

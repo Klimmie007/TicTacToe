@@ -29,6 +29,12 @@ public class GameController {
             public void mousePressed(MouseEvent e) {
                 if(model.getGame().getState() == MatchState.ABANDONED || model.getGame().getState() == MatchState.FINISHED)
                 {
+                    model.getGame().rematch();
+                    commands.clear();
+                    commandPointer = 0;
+                    view.getRedo().setEnabled(false);
+                    view.getUndo().setEnabled(false);
+                    view.updateView(model);
                     return;
                 }
                 int x = (int)e.getX()/ IShape.TILESIZE;
@@ -49,8 +55,7 @@ public class GameController {
                     commands.add(command);
                     model.getGame().executeCommand(command);
                     view.getUndo().setEnabled(true);
-                    view.setImage(model.getBoard());
-                    view.repaint();
+                    view.updateView(model);
                 }
             }
         };
@@ -73,8 +78,7 @@ public class GameController {
                 ICommand command = new UndoCommand((MoveCommand) commands.get(commandPointer));
                 model.getGame().executeCommand(command);
                 view.getRedo().setEnabled(true);
-                view.setImage(model.getBoard());
-                view.repaint();
+                view.updateView(model);
             }
         };
     }
@@ -95,8 +99,7 @@ public class GameController {
                     view.getRedo().setEnabled(false);
                 }
                 view.getUndo().setEnabled(true);
-                view.setImage(model.getBoard());
-                view.repaint();
+                view.updateView(model);
             }
         };
     }
