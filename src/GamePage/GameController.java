@@ -19,8 +19,6 @@ import java.util.List;
 public class GameController {
     private GameModel model;
     private GameView view;
-    private List<ICommand> commands = new ArrayList<>();
-    private int commandPointer;
 
     private MouseAdapter getAdapter()
     {
@@ -29,11 +27,7 @@ public class GameController {
             public void mousePressed(MouseEvent e) {
                 if(model.getGame().getState() == MatchState.ABANDONED || model.getGame().getState() == MatchState.FINISHED)
                 {
-                    model.getGame().rematch();
-                    commands.clear();
-                    commandPointer = 0;
-                    view.getRedo().setEnabled(false);
-                    view.getUndo().setEnabled(false);
+                    model.rematch();
                     view.updateView(model);
                     return;
                 }
@@ -42,17 +36,16 @@ public class GameController {
                 Board board = model.getBoard();
                 if(board.isSpotEmpty(x, y))
                 {
-                    if(commandPointer != commands.size())
+                    if(model.commandPointer != model.commands.size())
                     {
-                        for(int i = commands.size() - 1; i >= commandPointer ; i--)
+                        for(int i = model.commands.size() - 1; i >= model.commandPointer ; i--)
                         {
-                            commands.remove(i);
+                            model.commands.remove(i);
                         }
-                        view.getRedo().setEnabled(false);
                     }
-                    commandPointer++;
-                    ICommand command = new MoveCommand(commands.size() % 2 == 1 ? ShapeEnum.CIRCLE : ShapeEnum.CROSS, x, y);
-                    commands.add(command);
+                    model.commandPointer++;
+                    ICommand command = new MoveCommand(model.commands.size() % 2 == 1 ? ShapeEnum.CIRCLE : ShapeEnum.CROSS, x, y);
+                    model.commands.add(command);
                     model.getGame().executeCommand(command);
                     view.getUndo().setEnabled(true);
                     view.updateView(model);
@@ -66,18 +59,13 @@ public class GameController {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(commands.size() == 0)
+                if(!model.canUndo())
                 {
                     return;
                 }
-                commandPointer--;
-                if(commandPointer == 0)
-                {
-                    view.getUndo().setEnabled(false);
-                }
-                ICommand command = new UndoCommand((MoveCommand) commands.get(commandPointer));
+                model.commandPointer--;
+                ICommand command = new UndoCommand((MoveCommand) model.commands.get(model.commandPointer));
                 model.getGame().executeCommand(command);
-                view.getRedo().setEnabled(true);
                 view.updateView(model);
             }
         };
@@ -88,17 +76,12 @@ public class GameController {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if(commandPointer == commands.size())
+                if(!model.canRedo())
                 {
                     return;
                 }
-                model.getGame().executeCommand(commands.get(commandPointer));
-                commandPointer++;
-                if(commandPointer == commands.size())
-                {
-                    view.getRedo().setEnabled(false);
-                }
-                view.getUndo().setEnabled(true);
+                model.getGame().executeCommand(model.commands.get(model.commandPointer));
+                model.commandPointer++;
                 view.updateView(model);
             }
         };
@@ -106,13 +89,11 @@ public class GameController {
 
     public GameController(GameModel model, GameView view)
     {
-        commandPointer = 0;
         this.model = model;
         this.view = view;
         view.addMouseListener(getAdapter());
         view.setImage(model.getBoard());
         view.getUndo().addActionListener(getUndoAction());
-
         view.getRedo().addActionListener(getRedoAction());
     }
 }

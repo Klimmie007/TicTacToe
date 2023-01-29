@@ -56,6 +56,8 @@ public class GameView extends JPanel {
     public void updateView(GameModel model)
     {
         setImage(model.getBoard());
+        undo.setEnabled(model.canUndo());
+        redo.setEnabled(model.canRedo());
         switch(model.getGame().getState())
         {
             case FINISHED -> {
