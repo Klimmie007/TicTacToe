@@ -171,6 +171,11 @@ public class Board {
             this.columns = 3;
         }
 
+        public String getFormat()
+        {
+            return backgroundColor == null ? "Standard" : rows + "x" + columns;
+        }
+
         public void setRowsAndColumns(int rows, int columns)
         {
             this.rows = rows;

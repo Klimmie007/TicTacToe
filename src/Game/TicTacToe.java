@@ -53,4 +53,11 @@ public class TicTacToe {
         board = builder.build();
         state = MatchState.ONGOING;
     }
+
+    public List<String> getMatchDetails()
+    {
+        List<String> retVal = new ArrayList<>();
+        retVal.add("Format: " + builder.getFormat());
+        return retVal;
+    }
 }

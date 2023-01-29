@@ -176,12 +176,17 @@ public class MatchSetupController {
                 view.setEnabled(false);
                 view.setVisible(false);
                 JFrame frame = MainWindowSingleton.getInstance();
+                if(frame == null)
+                {
+                    throw new RuntimeException("frame is used by something else!");
+                }
                 GameView view1 = new GameView();
                 GameModel model1 = new GameModel(new TicTacToe(model));
                 GameController controller = new GameController(model1, view1);
                 frame.add(view1);
                 frame.add(view1.getBar(), BorderLayout.PAGE_START);
                 frame.pack();
+                MainWindowSingleton.release();
             }
         });
     }

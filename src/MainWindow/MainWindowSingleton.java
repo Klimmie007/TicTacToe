@@ -10,12 +10,23 @@ public class MainWindowSingleton extends JFrame {
         super("Tic Tac Toe");
     }
 
+    private static boolean isUsed = false;
+
     public static MainWindowSingleton getInstance()
     {
+        if(isUsed)
+        {
+            return null;
+        }
         if(instance == null)
         {
             instance = new MainWindowSingleton();
         }
+        isUsed = true;
         return instance;
+    }
+    public static void release()
+    {
+        isUsed = false;
     }
 }
