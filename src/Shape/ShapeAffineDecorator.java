@@ -24,7 +24,7 @@ public class ShapeAffineDecorator implements IShape {
         AffineTransform save = g.getTransform();
         AffineTransform transform = new AffineTransform();
         transform.translate(Board.ZEROX + x * TILESIZE, Board.ZEROY + y * TILESIZE);
-        transform.scale(TILESIZE-6, TILESIZE-6);
+        transform.scale(TILESIZE - 2 * Board.ZEROX, TILESIZE - 2 * Board.ZEROY);
         g.transform(transform);
         decorated.draw(g, x, y);
         g.setTransform(save);

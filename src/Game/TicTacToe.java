@@ -3,6 +3,7 @@ package Game;
 import Board.Board;
 import Command.ICommand;
 import Board.GameState;
+import MatchSetupPage.MatchSetupModel;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -18,10 +19,14 @@ public class TicTacToe {
         return board;
     }
 
-    public TicTacToe()
+    public TicTacToe(MatchSetupModel model)
     {
         Board.Builder builder = new Board.Builder();
-        builder.setBackgroundColor(Color.cyan);
+        if(!model.standard)
+        {
+            builder.setRowsAndColumns(model.rows, model.columns);
+            builder.setBackgroundColor(model.color);
+        }
         board = builder.build();
     }
 

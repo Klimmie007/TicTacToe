@@ -1,23 +1,20 @@
-import Game.TicTacToe;
-import GamePage.GameController;
-import GamePage.GameModel;
-import GamePage.GameView;
+import MainWindow.MainWindowSingleton;
+import MatchSetupPage.MatchSetupController;
+import MatchSetupPage.MatchSetupModel;
+import MatchSetupPage.MatchSetupView;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
-import java.awt.*;
-import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Tic Tac Toe");
+        JFrame frame = MainWindowSingleton.getInstance();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        GameView view = new GameView();
-        GameModel model = new GameModel(new TicTacToe());
-        GameController controller = new GameController(model, view);
-        frame.add(view);
-        frame.add(view.getBar(), BorderLayout.PAGE_START);
+
+        MatchSetupView view1 = new MatchSetupView();
+        MatchSetupModel model1 = new MatchSetupModel();
+        MatchSetupController controller1 = new MatchSetupController(model1, view1);
+        frame.add(view1);
 
         frame.pack();
         frame.setVisible(true);

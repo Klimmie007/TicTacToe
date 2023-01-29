@@ -22,12 +22,9 @@ public class GameController {
     private List<ICommand> commands = new ArrayList<>();
     private int commandPointer;
 
-    public GameController(GameModel model, GameView view)
+    private MouseAdapter getAdapter()
     {
-        commandPointer = 0;
-        this.model = model;
-        this.view = view;
-        view.addMouseListener(new MouseAdapter() {
+        return new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 if(model.getGame().getState() == MatchState.ABANDONED || model.getGame().getState() == MatchState.FINISHED)
@@ -56,9 +53,12 @@ public class GameController {
                     view.repaint();
                 }
             }
-        });
-        view.setImage(model.getBoard());
-        view.getUndo().addActionListener(new ActionListener() {
+        };
+    }
+
+    private ActionListener getUndoAction()
+    {
+        return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(commands.size() == 0)
@@ -76,9 +76,12 @@ public class GameController {
                 view.setImage(model.getBoard());
                 view.repaint();
             }
-        });
+        };
+    }
 
-        view.getRedo().addActionListener(new ActionListener() {
+    private ActionListener getRedoAction()
+    {
+        return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if(commandPointer == commands.size())
@@ -95,6 +98,18 @@ public class GameController {
                 view.setImage(model.getBoard());
                 view.repaint();
             }
-        });
+        };
+    }
+
+    public GameController(GameModel model, GameView view)
+    {
+        commandPointer = 0;
+        this.model = model;
+        this.view = view;
+        view.addMouseListener(getAdapter());
+        view.setImage(model.getBoard());
+        view.getUndo().addActionListener(getUndoAction());
+
+        view.getRedo().addActionListener(getRedoAction());
     }
 }

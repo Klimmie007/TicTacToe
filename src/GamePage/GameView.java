@@ -56,4 +56,10 @@ public class GameView extends JPanel {
         board.draw(g);
         setPreferredSize(board.getDimensions());
     }
+
+    @Override
+    public void setVisible(boolean aFlag) {
+        super.setVisible(aFlag);
+        bar.setVisible(aFlag);
+    }
 }
