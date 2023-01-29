@@ -32,6 +32,10 @@ public class TicTacToe {
         {
             state = MatchState.FINISHED;
         }
+        else
+        {
+            state = MatchState.ONGOING;
+        }
     }
     public MatchState getState()
     {

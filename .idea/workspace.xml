@@ -5,34 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1dd3855-e138-48fa-b0d1-d49291e02089" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Command/ICommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/MoveCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Command/UndoCommand.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Game/MatchState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GamePage/GameController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GamePage/GameModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/GamePage/GameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Redo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/img/Undo.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board$Builder.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/BoardPartsSingleton.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GameState.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/IShape.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board/Board$Builder$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Board/Board$Builder$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board/Board$Builder.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Board/Board$Builder.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Board/Board.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Board/Board.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Command/MoveCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Command/MoveCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Command/UndoCommand.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Command/UndoCommand.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Game/TicTacToe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Game/TicTacToe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameView.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameView.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Shape.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/ShapeAffineDecorator.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/ShapeEnum.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToe$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/TicTacToe.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/BoardPartsSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/BoardPartsSingleton.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/GameState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/GameState.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/IShape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/IShape.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardCentre.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardCentre.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardLeft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardLower.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardLower.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardLowerLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardLowerLeft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardLowerRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardLowerRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardUpper.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardUpper.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardUpperLeft.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardUpperLeft.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/BoardUpperRight.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/BoardUpperRight.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/Circle.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/Circle.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/img/Cross.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/img/Cross.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/Board.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/MoveCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/MoveCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Command/UndoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Command/UndoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Game/TicTacToe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/TicTacToe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePage/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePage/GameController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePage/GameView.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePage/GameView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Shape.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/Shape.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShapeAffineDecorator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/ShapeAffineDecorator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ShapeEnum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Shape/ShapeEnum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TicTacToe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/TicTacToe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +71,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "E:/Java_learning/ps5-chess",
+    "last_opened_file_path": "E:/Projekty-Semestr-5/TicTacToe/src/img",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -76,7 +79,11 @@
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\Projekty-Semestr-5\TicTacToe\src\img" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\Projekty-Semestr-5\TicTacToe\src" />
       <recent name="E:\Projekty-Semestr-5\TicTacToe\out\production\TicTacToe\img" />
       <recent name="E:\Projekty-Semestr-5\TicTacToe\out\production\TicTacToe" />
     </key>

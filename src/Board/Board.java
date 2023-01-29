@@ -110,10 +110,15 @@ public class Board {
     public void removeShape(int x, int y)
     {
         tiles[x][y] = null;
+        state = GameState.INCONCLUSIVE;
     }
 
     public boolean isSpotEmpty(int x, int y)
     {
+        if(x >= columns || y >= rows)
+        {
+            return false;
+        }
         return tiles[x][y] == null;
     }
 
