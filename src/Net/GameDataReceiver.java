@@ -151,11 +151,11 @@ public class GameDataReceiver {
     }
 
 
-    public void notifyHostsChanged() {
+    private void notifyHostsChanged() {
         hostsSubscribers.forEach(subscriber -> subscriber.hostsChanged(foundHosts));
     }
 
-    public void notifyMessageReceived() {
+    private void notifyMessageReceived() {
         messageSubscribers.forEach(subscriber -> subscriber.messageReceived(message));
     }
 
