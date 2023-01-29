@@ -149,6 +149,11 @@ public class MatchSetupController {
         this.view = view;
         this.model = model;
         view.updateView(model);
+        JFrame frame = MainWindowSingleton.getInstance();
+        frame.getContentPane().removeAll();
+        frame.add(view);
+        frame.pack();
+        MainWindowSingleton.release();
         IntFilter filter = new IntFilter();
         PlainDocument document = (PlainDocument) view.rowField.getDocument();
         document.setDocumentFilter(filter);
@@ -173,20 +178,9 @@ public class MatchSetupController {
         view.OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                view.setEnabled(false);
-                view.setVisible(false);
-                JFrame frame = MainWindowSingleton.getInstance();
-                if(frame == null)
-                {
-                    throw new RuntimeException("frame is used by something else!");
-                }
                 GameView view1 = new GameView();
                 GameModel model1 = new GameModel(new TicTacToe(model));
                 GameController controller = new GameController(model1, view1);
-                frame.add(view1);
-                frame.add(view1.getBar(), BorderLayout.PAGE_START);
-                frame.pack();
-                MainWindowSingleton.release();
             }
         });
     }

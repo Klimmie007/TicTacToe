@@ -6,9 +6,12 @@ import Command.MoveCommand;
 import Board.GameState;
 import Command.UndoCommand;
 import Game.MatchState;
+import MainWindow.MainWindowSingleton;
 import Shape.IShape;
 import Shape.ShapeEnum;
 
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
@@ -95,5 +98,12 @@ public class GameController {
         view.setImage(model.getBoard());
         view.getUndo().addActionListener(getUndoAction());
         view.getRedo().addActionListener(getRedoAction());
+        JFrame frame = MainWindowSingleton.getInstance();
+        frame.getContentPane().removeAll();
+        frame.add(view);
+        frame.add(view.getBar(), BorderLayout.PAGE_START);
+        frame.pack();
+        frame.setVisible(true);
+        MainWindowSingleton.release();
     }
 }

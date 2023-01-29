@@ -5,20 +5,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1dd3855-e138-48fa-b0d1-d49291e02089" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/MatchChoicePage/MatchChoiceController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatchChoicePage/MatchChoiceModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MatchChoicePage/MatchChoiceView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Game/TicTacToe.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Game/TicTacToe.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$2.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/GamePage/GameController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MainWindow/MainWindowSingleton.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MainWindow/MainWindowSingleton.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MatchChoicePage/MatchChoiceController$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MatchChoicePage/MatchChoiceController$1.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MatchChoicePage/MatchChoiceController$customMouseAdapter.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MatchChoicePage/MatchChoiceController$customMouseAdapter.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MatchChoicePage/MatchChoiceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MatchChoicePage/MatchChoiceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MatchSetupPage/MatchSetupController$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MatchSetupPage/MatchSetupController$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MatchSetupPage/MatchSetupController$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MatchSetupPage/MatchSetupController$4.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/TicTacToe/MatchSetupPage/MatchSetupController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TicTacToe/MatchSetupPage/MatchSetupController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Board/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Board/Board.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Game/TicTacToe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game/TicTacToe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePage/GameController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/GamePage/GameController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MainWindow/MainWindowSingleton.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MainWindow/MainWindowSingleton.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MatchChoicePage/MatchChoiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchChoicePage/MatchChoiceController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MatchSetupPage/MatchSetupController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MatchSetupPage/MatchSetupController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -134,6 +135,11 @@
           <url>file://$PROJECT_DIR$/src/MatchSetupPage/MatchSetupModel.java</url>
           <line>24</line>
           <option name="timeStamp" value="6" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/MatchChoicePage/MatchChoiceController.java</url>
+          <line>49</line>
+          <option name="timeStamp" value="8" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -31,16 +31,9 @@ public class MatchChoiceController{
 
         @Override
         public void mousePressed(MouseEvent e) {
-            JFrame frame = MainWindowSingleton.getInstance();
             GameView gameView = new GameView();
             GameModel gameModel = new GameModel(model.getMatches().get(index));
             GameController gameController = new GameController(gameModel, gameView);
-            view.setEnabled(false);
-            view.setVisible(false);
-            frame.add(gameView);
-            frame.add(gameView.getBar(), BorderLayout.PAGE_START);
-            frame.pack();
-            MainWindowSingleton.release();
         }
     }
 
@@ -51,6 +44,13 @@ public class MatchChoiceController{
         model.addMatch(new TicTacToe(new MatchSetupModel()), new customMouseAdapter(0));
         view.updateView(model);
         view.newGameButton.addActionListener(getCreateAction());
+        JFrame frame = MainWindowSingleton.getInstance();
+        frame.getContentPane().removeAll();
+        frame.add(view);
+        frame.add(view.toolBar, BorderLayout.PAGE_END);
+        frame.pack();
+        frame.setVisible(true);
+        MainWindowSingleton.release();
     }
 
     public ActionListener getCreateAction()
@@ -58,15 +58,9 @@ public class MatchChoiceController{
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JFrame frame = MainWindowSingleton.getInstance();
                 MatchSetupView matchSetupView = new MatchSetupView();
                 MatchSetupModel matchSetupModel = new MatchSetupModel();
                 MatchSetupController matchSetupController = new MatchSetupController(matchSetupModel, matchSetupView);
-                view.setEnabled(false);
-                view.setVisible(false);
-                frame.add(matchSetupView);
-                frame.pack();
-                MainWindowSingleton.release();
             }
         };
     }
