@@ -1,5 +1,7 @@
 package Net;
 
+import Net.Data.HostData;
+
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.DatagramPacket;
@@ -25,10 +27,10 @@ public class GameDataPublisher {
         socket.close();
     }
 
-    public void multicast(String message) throws IOException {
+    public void multicast(HostData hostData) throws IOException {
         socket = new DatagramSocket();
         group = InetAddress.getByName(GameDataReceiver.MULTICAST_ADDRESS);
-        buff = message.getBytes();
+        buff = hostData.toString().getBytes();
 
         DatagramPacket packet = new DatagramPacket(buff, buff.length, group, GameDataReceiver.MULTICAST_PORT);
         socket.send(packet);

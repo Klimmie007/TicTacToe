@@ -1,5 +1,8 @@
 package Net;
 
+import Net.Data.HostData;
+import Net.Data.InvalidHostDataStringException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -78,27 +81,18 @@ public class GameDataReceiver {
                 }
                 String received = new String(packet.getData(), 0, packet.getLength());
 
-                String[] keyValue = received.split("=");
-                if (keyValue.length != 2) {
-                    return;
-                }
-                String key = keyValue[0];
-                String value = keyValue[1];
-
-                if (key.equals("host")) {
-                    try {
-                        InetAddress host = InetAddress.getByName(value);
-                        if (host == null
-                            || foundHosts.contains(host)
-                            || host.equals(InetAddress.getLocalHost())) {
-
-                            return;
-                        }
-                        foundHosts.add(host);
-                        notifyHostsChanged();
-                    } catch (UnknownHostException e) {
-                        throw new RuntimeException(e);
+                try {
+                    HostData host = new HostData(received);
+                    if(host.address == null
+                        || foundHosts.contains(host.address)
+                        || host.equals(InetAddress.getLocalHost())
+                    ) {
+                        return;
                     }
+
+                    foundHosts.add(host.address);
+                    notifyHostsChanged();
+                } catch (InvalidHostDataStringException | UnknownHostException e) {
                 }
             }
         }
@@ -140,7 +134,6 @@ public class GameDataReceiver {
                     while(clientSocket.isConnected()) {
                         String value = in.readLine();
                         if(value != null) {
-                            System.out.println("got " + value);
                             message = value;
                             notifyMessageReceived();
                         }
