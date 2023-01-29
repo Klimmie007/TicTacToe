@@ -34,7 +34,6 @@ public class GameDataReceiver {
 
         multicastServer = new MulticastServer();
         new Thread(multicastServer).start();
-
     }
 
 
@@ -88,7 +87,7 @@ public class GameDataReceiver {
 
                 if (key.equals("host")) {
                     try {
-                        InetAddress host = InetAddress.getByName(key);
+                        InetAddress host = InetAddress.getByName(value);
                         if (host == null
                             || foundHosts.contains(host)
                             || host.equals(InetAddress.getLocalHost())) {
@@ -140,8 +139,11 @@ public class GameDataReceiver {
 
                     while(clientSocket.isConnected()) {
                         String value = in.readLine();
-                        message = value;
-                        notifyMessageReceived();
+                        if(value != null) {
+                            System.out.println("got " + value);
+                            message = value;
+                            notifyMessageReceived();
+                        }
                     }
                 }
             } catch (IOException e) {
