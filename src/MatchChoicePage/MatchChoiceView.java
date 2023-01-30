@@ -29,13 +29,8 @@ public class MatchChoiceView extends JScrollPane {
         {
             JPanel match = new JPanel();
             match.setLayout(new BoxLayout(match, BoxLayout.PAGE_AXIS));
-            games.get(i).getMatchDetails().forEach(new Consumer<String>() {
-                @Override
-                public void accept(String s) {
-                    match.add(new JLabel(s));
-                }
-            });
-            match.setPreferredSize(new Dimension(180, games.get(i).getMatchDetails().size() * lineHeight));
+            match.add(new JLabel(games.get(i).getFormat()));
+            match.setPreferredSize(new Dimension(180, lineHeight));
             match.addMouseListener(model.getAdapters().get(i));
             match.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
             ChoicePanel.add(match);

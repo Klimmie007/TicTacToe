@@ -68,12 +68,4 @@ public class TicTacToe {
     {
         return host.getName();
     }
-
-    public List<String> getMatchDetails()
-    {
-        List<String> retVal = new ArrayList<>();
-        retVal.add("Format: " + builder.getFormat());
-        retVal.add("Host: " + host.getName());
-        return retVal;
-    }
 }

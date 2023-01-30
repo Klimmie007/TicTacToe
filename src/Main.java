@@ -19,13 +19,11 @@ public class Main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.release();
 
-//        MatchChoiceView view = new MatchChoiceView();
-//        MatchChoiceModel model = new MatchChoiceModel();
-//        MatchChoiceController controller = new MatchChoiceController(view, model);
+        MatchSetupView view = new MatchSetupView();
+        MatchSetupModel model = new MatchSetupModel();
+        MatchSetupController controller = new MatchSetupController(model, view);
 
-        SignInView view = new SignInView();
-        SignInModel model = new SignInModel();
-        SignInController controller = new SignInController(model, view);
+
 
     }
 }

@@ -135,6 +135,10 @@ public class Board {
             areDiagonalWinsAllowed = false;
         }
 
+        public boolean allowsDiagonalWins()
+        {
+            return  areDiagonalWinsAllowed;
+        }
         public void setRowsAndColumns(int rows, int columns)
         {
             this.rows = rows;

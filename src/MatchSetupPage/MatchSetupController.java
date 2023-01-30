@@ -239,5 +239,6 @@ public class MatchSetupController {
                 GameController controller = new GameController(model1, view1);
             }
         });
+        frame.setVisible(true);
     }
 }
