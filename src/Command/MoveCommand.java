@@ -8,7 +8,7 @@ import Shape.ShapeAffineDecorator;
 import Shape.ShapeEnum;
 
 public class MoveCommand implements ICommand {
-    private IShape shape;
+    private ShapeEnum shape;
     private int x, y;
     protected int getX()
     {
@@ -23,7 +23,7 @@ public class MoveCommand implements ICommand {
     {
         this.x = x;
         this.y = y;
-        this.shape = new ShapeAffineDecorator(new Shape(shape));
+        this.shape = shape;
     }
     @Override
     public void execute(Board board)

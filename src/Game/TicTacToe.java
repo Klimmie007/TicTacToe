@@ -4,12 +4,13 @@ import Board.Board;
 import Command.ICommand;
 import Board.GameState;
 import MatchSetupPage.MatchSetupModel;
+import Player.Player;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class TicTacToe {
+    private Player host;
     private Board board;
     private MatchState state = MatchState.WAITING_FOR_PLAYERS;
     private List<ICommand> commands = new ArrayList<>();
@@ -22,6 +23,7 @@ public class TicTacToe {
 
     public TicTacToe(MatchSetupModel model)
     {
+        host = model.getHost();
         builder = new Board.Builder();
         if(!model.standard)
         {
@@ -54,10 +56,16 @@ public class TicTacToe {
         state = MatchState.ONGOING;
     }
 
+    public String getPlayerNames()
+    {
+        return host.getName();
+    }
+
     public List<String> getMatchDetails()
     {
         List<String> retVal = new ArrayList<>();
         retVal.add("Format: " + builder.getFormat());
+        retVal.add("Host: " + host.getName());
         return retVal;
     }
 }

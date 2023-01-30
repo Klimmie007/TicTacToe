@@ -40,9 +40,9 @@ public class MatchSetupController {
         private boolean test(String text) {
             try {
                 int result = Integer.parseInt(text);
-                return result > 1;
+                return true;
             } catch (NumberFormatException e) {
-                return false;
+                return text == "";
             }
         }
 
@@ -80,6 +80,22 @@ public class MatchSetupController {
         }
     }
 
+    public String getErrorMsg(int value)
+    {
+        if(value <= 0)
+        {
+            return "value has to be non-negative";
+        }
+        else if (value > 5)
+        {
+            return "Game currently does not support values above 5";
+        }
+        else
+        {
+            return "";
+        }
+    }
+
     public DocumentListener getRowListener()
     {
         return new DocumentListener() {
@@ -89,9 +105,11 @@ public class MatchSetupController {
                     return;
                 try {
                     model.rows = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
+                    model.rowError = getErrorMsg(model.rows);
                 } catch (BadLocationException ex) {
-                    throw new RuntimeException(ex);
+                    model.rowError = "Field cannot be empty";
                 }
+                view.updateView(model);
             }
 
             @Override
@@ -100,14 +118,24 @@ public class MatchSetupController {
                     return;
                 try {
                     model.rows = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
+                    model.rowError = getErrorMsg(model.rows);
                 } catch (BadLocationException ex) {
-                    throw new RuntimeException(ex);
+                    model.rowError = "Field cannot be empty";
                 }
+                view.updateView(model);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-
+                if(e.getDocument().getLength() == 0)
+                    return;
+                try {
+                    model.rows = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
+                    model.rowError = getErrorMsg(model.rows);
+                } catch (BadLocationException ex) {
+                    model.rowError = "Field cannot be empty";
+                }
+                view.updateView(model);
             }
         };
     }
@@ -121,9 +149,11 @@ public class MatchSetupController {
                     return;
                 try {
                     model.columns = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
+                    model.columnError = getErrorMsg(model.columns);
                 } catch (BadLocationException ex) {
-                    throw new RuntimeException(ex);
+                    model.rowError = "Field cannot be empty";
                 }
+                view.updateView(model);
             }
 
             @Override
@@ -132,14 +162,24 @@ public class MatchSetupController {
                     return;
                 try {
                     model.columns = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
+                    model.columnError = getErrorMsg(model.columns);
                 } catch (BadLocationException ex) {
-                    throw new RuntimeException(ex);
+                    model.rowError = "Field cannot be empty";
                 }
+                view.updateView(model);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-
+                if(e.getDocument().getLength() == 0)
+                    return;
+                try {
+                    model.columns = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
+                    model.columnError = getErrorMsg(model.columns);
+                } catch (BadLocationException ex) {
+                    model.rowError = "Field cannot be empty";
+                }
+                view.updateView(model);
             }
         };
     }
@@ -149,11 +189,11 @@ public class MatchSetupController {
         this.view = view;
         this.model = model;
         view.updateView(model);
-        JFrame frame = MainWindowSingleton.getInstance();
+        MainWindowSingleton frame = MainWindowSingleton.getInstance();
         frame.getContentPane().removeAll();
         frame.add(view);
         frame.pack();
-        MainWindowSingleton.release();
+        frame.release();
         IntFilter filter = new IntFilter();
         PlainDocument document = (PlainDocument) view.rowField.getDocument();
         document.setDocumentFilter(filter);

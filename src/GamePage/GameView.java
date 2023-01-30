@@ -14,7 +14,8 @@ import java.io.IOException;
 public class GameView extends JPanel {
     private Image image;
     private JToolBar bar;
-    private JButton undo, redo;
+    private JButton undo, redo, exit;
+    public JLabel footer;
 
     public JToolBar getBar()
     {
@@ -30,6 +31,10 @@ public class GameView extends JPanel {
         return redo;
     }
 
+    public JButton getExit() {
+        return exit;
+    }
+
     public GameView()
     {
         bar = new JToolBar();
@@ -42,8 +47,11 @@ public class GameView extends JPanel {
             e.printStackTrace();
             System.exit(-1);
         }
+        exit = new JButton("Exit");
         bar.add(undo);
         bar.add(redo);
+        bar.add(exit);
+        footer = new JLabel("UwU");
         undo.setEnabled(false);
         redo.setEnabled(false);
     }
@@ -55,6 +63,8 @@ public class GameView extends JPanel {
 
     public void updateView(GameModel model)
     {
+        footer.setText(model.getGame().getPlayerNames());
+        footer.setPreferredSize(new Dimension(600, 20));
         setImage(model.getBoard());
         undo.setEnabled(model.canUndo());
         redo.setEnabled(model.canRedo());

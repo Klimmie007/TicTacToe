@@ -5,25 +5,27 @@ import MatchChoicePage.MatchChoiceView;
 import MatchSetupPage.MatchSetupController;
 import MatchSetupPage.MatchSetupModel;
 import MatchSetupPage.MatchSetupView;
+import SignInPage.SignInController;
+import SignInPage.SignInModel;
+import SignInPage.SignInView;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        JFrame frame = MainWindowSingleton.getInstance();
+        MainWindowSingleton frame = MainWindowSingleton.getInstance();
         if(frame == null)
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        MainWindowSingleton.release();
-//        MatchSetupView view1 = new MatchSetupView();
-//        MatchSetupModel model1 = new MatchSetupModel();
-//        MatchSetupController controller1 = new MatchSetupController(model1, view1);
-//        frame.add(view1);
+        frame.release();
 
-        MatchChoiceView view = new MatchChoiceView();
-        MatchChoiceModel model = new MatchChoiceModel();
-        MatchChoiceController controller = new MatchChoiceController(view, model);
+//        MatchChoiceView view = new MatchChoiceView();
+//        MatchChoiceModel model = new MatchChoiceModel();
+//        MatchChoiceController controller = new MatchChoiceController(view, model);
 
+        SignInView view = new SignInView();
+        SignInModel model = new SignInModel();
+        SignInController controller = new SignInController(model, view);
 
     }
 }

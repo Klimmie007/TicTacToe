@@ -15,11 +15,6 @@ public class ShapeAffineDecorator implements IShape {
     }
 
     @Override
-    public ShapeEnum getChosen() {
-        return decorated.getChosen();
-    }
-
-    @Override
     public void draw(Graphics2D g, int x, int y) {
         AffineTransform save = g.getTransform();
         AffineTransform transform = new AffineTransform();

@@ -1,5 +1,6 @@
 package MatchChoicePage;
 
+import Board.Board;
 import Game.TicTacToe;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public class MatchChoiceView extends JScrollPane {
-    public static final int lineHeight = 30;
+    public static final int lineHeight = 25;
     private JPanel ChoicePanel = new JPanel();
     public JButton newGameButton = new JButton("Create your own game");
 
@@ -17,7 +18,7 @@ public class MatchChoiceView extends JScrollPane {
     public MatchChoiceView()
     {
         setViewportView(ChoicePanel);
-        setPreferredSize(new Dimension(600, 600));
+        setPreferredSize(new Dimension(200, 600));
         toolBar.add(newGameButton);
     }
     public void updateView(MatchChoiceModel model)
@@ -27,13 +28,14 @@ public class MatchChoiceView extends JScrollPane {
         for(int i = 0; i < games.size(); i++)
         {
             JPanel match = new JPanel();
+            match.setLayout(new BoxLayout(match, BoxLayout.PAGE_AXIS));
             games.get(i).getMatchDetails().forEach(new Consumer<String>() {
                 @Override
                 public void accept(String s) {
                     match.add(new JLabel(s));
                 }
             });
-            match.setPreferredSize(new Dimension(580, games.get(i).getMatchDetails().size() * lineHeight));
+            match.setPreferredSize(new Dimension(180, games.get(i).getMatchDetails().size() * lineHeight));
             match.addMouseListener(model.getAdapters().get(i));
             match.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
             ChoicePanel.add(match);

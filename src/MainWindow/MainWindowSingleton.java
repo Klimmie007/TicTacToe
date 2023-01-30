@@ -25,7 +25,7 @@ public class MainWindowSingleton extends JFrame {
         isUsed = true;
         return instance;
     }
-    public static void release()
+    public void release()
     {
         isUsed = false;
     }

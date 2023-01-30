@@ -11,7 +11,6 @@ public class MatchChoiceModel {
     private List<TicTacToe> matches = new ArrayList<>();
     private List<MouseAdapter> adapters = new ArrayList<>();
 
-
     public List<TicTacToe> getMatches() {
         return matches;
     }

@@ -2,20 +2,25 @@ package Board;
 
 import java.awt.*;
 import java.awt.image.*;
+import java.util.HashMap;
 
 import Shape.IShape;
 import Shape.ShapeEnum;
+import Shape.ShapeAffineDecorator;
+import Shape.Shape;
 
 public class Board {
     public static final int ZEROX = 3;
     public static final int ZEROY = 3;
 
-    private IShape tiles[][];
-    private Image image = null;
+    private ShapeEnum tiles[][];
+    private final IShape Circle = new ShapeAffineDecorator(new Shape(ShapeEnum.CIRCLE));
+    private final IShape Cross = new ShapeAffineDecorator(new Shape(ShapeEnum.CROSS));
+    private Image image;
     private int rows, columns;
     private GameState state = GameState.INCONCLUSIVE;
 
-    private Board(Image img, IShape[][] tiles, int columns, int rows)
+    private Board(Image img, ShapeEnum[][] tiles, int columns, int rows)
     {
         this.tiles = tiles;
         image = img;
@@ -23,12 +28,12 @@ public class Board {
         this.rows = rows;
     }
 
-    public void addShape(IShape shape, int x, int y)
+    public void addShape(ShapeEnum shape, int x, int y)
     {
         tiles[x][y] = shape;
-        if(checkColumnWin(shape.getChosen(), x) || checkRowWin(shape.getChosen(), y) || checkDiagonalWin(shape.getChosen(), y, x))
+        if(checkColumnWin(shape, x) || checkRowWin(shape, y) || checkDiagonalWin(shape, y, x))
         {
-            state = shape.getChosen() == ShapeEnum.CIRCLE ? GameState.CIRCLE_WON : GameState.CROSS_WON;
+            state = shape == ShapeEnum.CIRCLE ? GameState.CIRCLE_WON : GameState.CROSS_WON;
         }
         else if(isFull())
         {
@@ -40,12 +45,8 @@ public class Board {
     {
         for(int i = 0; i < rows; i++)
         {
-            IShape toCheck = tiles[column][i];
-            if(toCheck == null)
-            {
-                return false;
-            }
-            if(toCheck.getChosen() != checking)
+            ShapeEnum toCheck = tiles[column][i];
+            if(toCheck != checking)
             {
                 return false;
             }
@@ -57,12 +58,8 @@ public class Board {
     {
         for(int i = 0; i < rows; i++)
         {
-            IShape toCheck = tiles[i][row];
-            if(toCheck == null)
-            {
-                return false;
-            }
-            if(toCheck.getChosen() != checking)
+            ShapeEnum toCheck = tiles[i][row];
+            if(toCheck != checking)
             {
                 return false;
             }
@@ -80,12 +77,8 @@ public class Board {
         {
             for(int i = 0; i < rows; i++)
             {
-                IShape toCheck = tiles[i][i];
-                if(toCheck == null)
-                {
-                    return false;
-                }
-                if(toCheck.getChosen() != checking)
+                ShapeEnum toCheck = tiles[i][i];
+                if(toCheck != checking)
                 {
                     return false;
                 }
@@ -94,12 +87,8 @@ public class Board {
         }
         for(int i = 0; i < rows; i++)
         {
-            IShape toCheck = tiles[columns-i-1][i];
-            if(toCheck == null)
-            {
-                return false;
-            }
-            if(toCheck.getChosen() != checking)
+            ShapeEnum toCheck = tiles[columns-i-1][i];
+            if(toCheck != checking)
             {
                 return false;
             }
@@ -129,9 +118,23 @@ public class Board {
         {
             for(int j = 0; j < rows; j++)
             {
-                if(tiles[i][j] != null)
+                if(tiles[i][j] == null)
                 {
-                    tiles[i][j].draw(g, i, j);
+                    continue;
+                }
+                switch(tiles[i][j])
+                {
+                    case CROSS -> {
+                        Cross.draw(g, i, j);
+                        break;
+                    }
+                    case CIRCLE -> {
+                        Circle.draw(g, i, j);
+                        break;
+                    }
+                    default -> {
+
+                    }
                 }
             }
         }
@@ -197,7 +200,7 @@ public class Board {
             graphics2D.drawImage(singleton.getPart(0, 2), 0* IShape.TILESIZE, (rows-1) * IShape.TILESIZE, null);
             graphics2D.drawImage(singleton.getPart(2, 0), (columns-1) * IShape.TILESIZE, 0 * IShape.TILESIZE, null);
             graphics2D.drawImage(singleton.getPart(2, 2), (columns-1) * IShape.TILESIZE, (rows-1) * IShape.TILESIZE, null);
-            IShape tiles[][] = new IShape[columns][rows];
+            ShapeEnum tiles[][] = new ShapeEnum[columns][rows];
             for(int i = 1; i < columns - 1; i++)
             {
                 graphics2D.drawImage(singleton.getPart(1, 0), i* IShape.TILESIZE, 0, null);

@@ -44,13 +44,13 @@ public class MatchChoiceController{
         model.addMatch(new TicTacToe(new MatchSetupModel()), new customMouseAdapter(0));
         view.updateView(model);
         view.newGameButton.addActionListener(getCreateAction());
-        JFrame frame = MainWindowSingleton.getInstance();
+        MainWindowSingleton frame = MainWindowSingleton.getInstance();
         frame.getContentPane().removeAll();
         frame.add(view);
         frame.add(view.toolBar, BorderLayout.PAGE_END);
         frame.pack();
         frame.setVisible(true);
-        MainWindowSingleton.release();
+        frame.release();
     }
 
     public ActionListener getCreateAction()

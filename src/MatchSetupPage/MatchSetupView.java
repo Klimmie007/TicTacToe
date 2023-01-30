@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class MatchSetupView extends JPanel {
     public Checkbox isStandard;
-    public JLabel rowLabel, columnLabel, colorLabel;
+    public JLabel rowLabel, columnLabel, colorLabel, rowErrorLabel, columnErrorLabel;
     public JTextField rowField, columnField;
     public String colors[] = new String[]{"White", "Cyan"};
     public JButton OKButton;
@@ -24,25 +24,41 @@ public class MatchSetupView extends JPanel {
         isStandard = new Checkbox("Make standard game", true);
         rowField = new JTextField("3", 10);
         rowField.setEnabled(false);
+        rowErrorLabel = new JLabel("");
+        rowErrorLabel.setPreferredSize(new Dimension(500, 30));
         columnField = new JTextField("3", 10);
         columnField.setEnabled(false);
+        columnErrorLabel = new JLabel();
+        columnErrorLabel.setPreferredSize(new Dimension(500, 30));
         colorChoices = new JComboBox<>();
         colorChoices.setEnabled(false);
         OKButton = new JButton("OK");
-        add(rowLabel);
-        add(rowField);
-        add(columnLabel);
-        add(columnField);
-        add(colorLabel);
-        add(colorChoices);
-        add(isStandard);
-        add(OKButton);
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        JPanel rowGroup = new JPanel();
+        rowGroup.add(rowLabel);
+        rowGroup.add(rowField);
+        add(rowGroup);
+        add(rowErrorLabel);
+        JPanel columnGroup = new JPanel();
+        columnGroup.add(columnLabel);
+        columnGroup.add(columnField);
+        add(columnGroup);
+        add(columnErrorLabel);
+        JPanel colorGroup = new JPanel();
+        colorGroup.add(colorLabel);
+        colorGroup.add(colorChoices);
+        add(colorGroup);
+        JPanel importantGroup = new JPanel();
+        importantGroup.add(isStandard);
+        importantGroup.add(OKButton);
+        add(importantGroup);
+        setPreferredSize(new Dimension(500, 160));
     }
 
     public void updateView(MatchSetupModel model)
     {
-        rowField.setText(Integer.toString(model.rows));
-        columnField.setText(Integer.toString(model.columns));
+        rowErrorLabel.setText(model.standard ? "" : model.rowError);
+        columnErrorLabel.setText(model.standard ? "" : model.columnError);
         colorChoices.setModel(model);
         isStandard.setState(model.standard);
         rowField.setEnabled(!model.standard);

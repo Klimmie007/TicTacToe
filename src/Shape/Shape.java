@@ -52,11 +52,6 @@ public class Shape implements IShape {
     }
 
     @Override
-    public ShapeEnum getChosen() {
-        return shape;
-    }
-
-    @Override
     public void draw(Graphics2D g, int x, int y) {
         g.drawImage(img, 0, 0, 1, 1,  null);
     }

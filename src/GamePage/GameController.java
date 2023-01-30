@@ -7,6 +7,9 @@ import Board.GameState;
 import Command.UndoCommand;
 import Game.MatchState;
 import MainWindow.MainWindowSingleton;
+import MatchChoicePage.MatchChoiceController;
+import MatchChoicePage.MatchChoiceModel;
+import MatchChoicePage.MatchChoiceView;
 import Shape.IShape;
 import Shape.ShapeEnum;
 
@@ -90,20 +93,34 @@ public class GameController {
         };
     }
 
+    public ActionListener getExitAction()
+    {
+        return new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MatchChoiceModel model = new MatchChoiceModel();
+                MatchChoiceView view = new MatchChoiceView();
+                MatchChoiceController controller = new MatchChoiceController(view, model);
+            }
+        };
+    }
+
     public GameController(GameModel model, GameView view)
     {
         this.model = model;
         this.view = view;
         view.addMouseListener(getAdapter());
-        view.setImage(model.getBoard());
         view.getUndo().addActionListener(getUndoAction());
         view.getRedo().addActionListener(getRedoAction());
-        JFrame frame = MainWindowSingleton.getInstance();
+        view.getExit().addActionListener(getExitAction());
+        view.updateView(model);
+        MainWindowSingleton frame = MainWindowSingleton.getInstance();
         frame.getContentPane().removeAll();
         frame.add(view);
         frame.add(view.getBar(), BorderLayout.PAGE_START);
+        frame.add(view.footer, BorderLayout.PAGE_END);
         frame.pack();
         frame.setVisible(true);
-        MainWindowSingleton.release();
+        frame.release();
     }
 }
