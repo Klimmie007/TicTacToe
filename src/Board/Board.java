@@ -4,6 +4,9 @@ import java.awt.*;
 import java.awt.image.*;
 import java.util.HashMap;
 
+import Board.Strategy.AbstractWinStrategy;
+import Board.Strategy.AllowDiagonalWinsStrategy;
+import Board.Strategy.NoDiagonalWinsStrategy;
 import Shape.IShape;
 import Shape.ShapeEnum;
 import Shape.ShapeAffineDecorator;
@@ -20,18 +23,21 @@ public class Board {
     private int rows, columns;
     private GameState state = GameState.INCONCLUSIVE;
 
-    private Board(Image img, ShapeEnum[][] tiles, int columns, int rows)
+    private AbstractWinStrategy strategy;
+
+    private Board(Image img, ShapeEnum[][] tiles, int columns, int rows, AbstractWinStrategy strategy)
     {
         this.tiles = tiles;
         image = img;
         this.columns = columns;
         this.rows = rows;
+        this.strategy = strategy;
     }
 
     public void addShape(ShapeEnum shape, int x, int y)
     {
         tiles[x][y] = shape;
-        if(checkColumnWin(shape, x) || checkRowWin(shape, y) || checkDiagonalWin(shape, y, x))
+        if(strategy.checkIfWon(tiles, x, y, shape))
         {
             state = shape == ShapeEnum.CIRCLE ? GameState.CIRCLE_WON : GameState.CROSS_WON;
         }
@@ -39,61 +45,6 @@ public class Board {
         {
             state = GameState.DRAW;
         }
-    }
-
-    private boolean checkColumnWin(ShapeEnum checking, int column)
-    {
-        for(int i = 0; i < rows; i++)
-        {
-            ShapeEnum toCheck = tiles[column][i];
-            if(toCheck != checking)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkRowWin(ShapeEnum checking, int row)
-    {
-        for(int i = 0; i < rows; i++)
-        {
-            ShapeEnum toCheck = tiles[i][row];
-            if(toCheck != checking)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    private boolean checkDiagonalWin(ShapeEnum checking, int row, int column)
-    {
-        if(rows != columns || (row != column && row != columns - column - 1))
-        {
-            return false;
-        }
-        if(row == column)
-        {
-            for(int i = 0; i < rows; i++)
-            {
-                ShapeEnum toCheck = tiles[i][i];
-                if(toCheck != checking)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        for(int i = 0; i < rows; i++)
-        {
-            ShapeEnum toCheck = tiles[columns-i-1][i];
-            if(toCheck != checking)
-            {
-                return false;
-            }
-        }
-        return true;
     }
 
     public void removeShape(int x, int y)
@@ -109,6 +60,20 @@ public class Board {
             return false;
         }
         return tiles[x][y] == null;
+    }
+
+    public boolean isFull() {
+        for(int i = 0; i < columns; i++)
+        {
+            for(int j = 0; j < rows; j++)
+            {
+                if(tiles[i][j] == null)
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
     public void draw(Graphics2D g)
@@ -132,9 +97,6 @@ public class Board {
                         Circle.draw(g, i, j);
                         break;
                     }
-                    default -> {
-
-                    }
                 }
             }
         }
@@ -145,20 +107,6 @@ public class Board {
         return new Dimension(columns * IShape.TILESIZE, rows * IShape.TILESIZE);
     }
 
-    public boolean isFull() {
-        for(int i = 0; i < columns; i++)
-        {
-            for(int j = 0; j < rows; j++)
-            {
-                if(tiles[i][j] == null)
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
     public GameState getState() {
         return state;
     }
@@ -166,17 +114,25 @@ public class Board {
     public static class Builder
     {
         private Color backgroundColor;
-        private static int rows, columns;
+        private int rows, columns;
+        private AbstractWinStrategy strategy;
+        private boolean areDiagonalWinsAllowed;
         private static Image BoardParts[] = new Image[9];
         public Builder()
         {
             this.rows = 3;
             this.columns = 3;
+            areDiagonalWinsAllowed = true;
         }
 
         public String getFormat()
         {
             return backgroundColor == null ? "Standard" : rows + "x" + columns;
+        }
+
+        public void dontAllowDiagonalWins()
+        {
+            areDiagonalWinsAllowed = false;
         }
 
         public void setRowsAndColumns(int rows, int columns)
@@ -193,6 +149,10 @@ public class Board {
 
         public Board build()
         {
+            if(strategy == null)
+            {
+                strategy = areDiagonalWinsAllowed ? new AllowDiagonalWinsStrategy(rows, columns) : new NoDiagonalWinsStrategy(rows, columns);
+            }
             BoardPartsSingleton singleton = BoardPartsSingleton.getInstance();
             Image image = new BufferedImage(columns * IShape.TILESIZE, rows * IShape.TILESIZE, BufferedImage.TYPE_BYTE_BINARY);
             Graphics2D graphics2D = (Graphics2D) image.getGraphics();
@@ -235,7 +195,7 @@ public class Board {
                 ImageProducer ip = new FilteredImageSource(image.getSource(), filter);
                 image = Toolkit.getDefaultToolkit().createImage(ip);
             }
-            return new Board(image, tiles, columns, rows);
+            return new Board(image, tiles, columns, rows, strategy);
         }
     }
 }

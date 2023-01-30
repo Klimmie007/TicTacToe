@@ -4,6 +4,9 @@ import MainWindow.MainWindowSingleton;
 import MatchChoicePage.MatchChoiceController;
 import MatchChoicePage.MatchChoiceModel;
 import MatchChoicePage.MatchChoiceView;
+import MatchSetupPage.MatchSetupController;
+import MatchSetupPage.MatchSetupModel;
+import MatchSetupPage.MatchSetupView;
 import Player.Player;
 import Player.PlayerDB;
 
@@ -12,6 +15,7 @@ import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 public class SignInController {
     private SignInModel model;
@@ -19,6 +23,10 @@ public class SignInController {
 
     private class NameFilter extends DocumentFilter
     {
+        private boolean test(String text) {
+            return Pattern.matches("[a-zA-Z]{0,20}", text);
+        }
+
         @Override
         public void insertString(DocumentFilter.FilterBypass fb, int offset, String string,
                                  AttributeSet attr) throws BadLocationException {
@@ -33,10 +41,6 @@ public class SignInController {
             } else {
                 // warn the user and don't allow the insert
             }
-        }
-
-        private boolean test(String text) {
-            return text.length() < 20;
         }
 
         @Override
@@ -136,9 +140,9 @@ public class SignInController {
             @Override
             public void actionPerformed(ActionEvent e) {
                 PlayerDB.player = new Player(model.name);
-                MatchChoiceView view = new MatchChoiceView();
-                MatchChoiceModel model = new MatchChoiceModel();
-                MatchChoiceController controller = new MatchChoiceController(view, model);
+                MatchSetupView view = new MatchSetupView();
+                MatchSetupModel model = new MatchSetupModel();
+                MatchSetupController controller = new MatchSetupController(model, view);
             }
         });
         PlainDocument document = (PlainDocument) view.nameField.getDocument();

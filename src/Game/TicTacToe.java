@@ -15,6 +15,10 @@ public class TicTacToe {
     private MatchState state = MatchState.WAITING_FOR_PLAYERS;
     private List<ICommand> commands = new ArrayList<>();
 
+    public String getFormat()
+    {
+        return builder.getFormat();
+    }
     public Board getBoard()
     {
         return board;
@@ -29,6 +33,10 @@ public class TicTacToe {
         {
             builder.setRowsAndColumns(model.rows, model.columns);
             builder.setBackgroundColor(model.color);
+            if(!model.allowDiagonalWins)
+            {
+                builder.dontAllowDiagonalWins();
+            }
         }
         board = builder.build();
     }

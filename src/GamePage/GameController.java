@@ -10,6 +10,9 @@ import MainWindow.MainWindowSingleton;
 import MatchChoicePage.MatchChoiceController;
 import MatchChoicePage.MatchChoiceModel;
 import MatchChoicePage.MatchChoiceView;
+import MatchSetupPage.MatchSetupController;
+import MatchSetupPage.MatchSetupModel;
+import MatchSetupPage.MatchSetupView;
 import Shape.IShape;
 import Shape.ShapeEnum;
 
@@ -98,9 +101,9 @@ public class GameController {
         return new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MatchChoiceModel model = new MatchChoiceModel();
-                MatchChoiceView view = new MatchChoiceView();
-                MatchChoiceController controller = new MatchChoiceController(view, model);
+                MatchSetupModel model = new MatchSetupModel();
+                MatchSetupView view = new MatchSetupView();
+                MatchSetupController controller = new MatchSetupController(model, view);
             }
         };
     }
@@ -118,7 +121,6 @@ public class GameController {
         frame.getContentPane().removeAll();
         frame.add(view);
         frame.add(view.getBar(), BorderLayout.PAGE_START);
-        frame.add(view.footer, BorderLayout.PAGE_END);
         frame.pack();
         frame.setVisible(true);
         frame.release();

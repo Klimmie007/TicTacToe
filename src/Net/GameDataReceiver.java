@@ -27,7 +27,7 @@ public class GameDataReceiver {
 
     private Set<IHostsSubscriber> hostsSubscribers;
     private Set<IMessageSubscriber> messageSubscribers;
-    private Set<InetAddress> foundHosts;
+    private Set<HostData> foundHosts;
     private String message;
 
     public GameDataReceiver() {
@@ -90,7 +90,7 @@ public class GameDataReceiver {
                         return;
                     }
 
-                    foundHosts.add(host.address);
+                    foundHosts.add(host);
                     notifyHostsChanged();
                 } catch (InvalidHostDataStringException | UnknownHostException e) {
                 }

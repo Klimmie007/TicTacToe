@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 import java.util.HashMap;
 
 public class MatchSetupView extends JPanel {
-    public Checkbox isStandard;
+    public Checkbox isStandard, allowDiagonalWins;
     public JLabel rowLabel, columnLabel, colorLabel, rowErrorLabel, columnErrorLabel;
     public JTextField rowField, columnField;
     public String colors[] = new String[]{"White", "Cyan"};
@@ -22,6 +22,7 @@ public class MatchSetupView extends JPanel {
         columnLabel = new JLabel("Columns:");
         colorLabel = new JLabel("Background color");
         isStandard = new Checkbox("Make standard game", true);
+        allowDiagonalWins = new Checkbox("Allow diagonal wins", true);
         rowField = new JTextField("3", 10);
         rowField.setEnabled(false);
         rowErrorLabel = new JLabel("");
@@ -48,6 +49,9 @@ public class MatchSetupView extends JPanel {
         colorGroup.add(colorLabel);
         colorGroup.add(colorChoices);
         add(colorGroup);
+        JPanel ruleGroup = new JPanel();
+        ruleGroup.add(allowDiagonalWins);
+        add(ruleGroup);
         JPanel importantGroup = new JPanel();
         importantGroup.add(isStandard);
         importantGroup.add(OKButton);
@@ -61,8 +65,10 @@ public class MatchSetupView extends JPanel {
         columnErrorLabel.setText(model.standard ? "" : model.columnError);
         colorChoices.setModel(model);
         isStandard.setState(model.standard);
+        allowDiagonalWins.setEnabled(!model.standard);
         rowField.setEnabled(!model.standard);
         columnField.setEnabled(!model.standard);
         colorChoices.setEnabled(!model.standard);
+        OKButton.setEnabled(model.standard || (model.rowError == "" && model.columnError == ""));
     }
 }

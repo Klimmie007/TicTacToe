@@ -42,7 +42,7 @@ public class MatchSetupController {
                 int result = Integer.parseInt(text);
                 return true;
             } catch (NumberFormatException e) {
-                return text == "";
+                return text.equals("");
             }
         }
 
@@ -74,6 +74,10 @@ public class MatchSetupController {
             if (test(sb.toString())) {
                 super.remove(fb, offset, length);
             } else {
+                if(sb.charAt(0) == '-');
+                {
+                    super.remove(fb, offset, length);
+                }
                 // warn the user and don't allow the insert
             }
 
@@ -82,9 +86,9 @@ public class MatchSetupController {
 
     public String getErrorMsg(int value)
     {
-        if(value <= 0)
+        if(value <= 1)
         {
-            return "value has to be non-negative";
+            return "Value has to be at least equal to 2";
         }
         else if (value > 5)
         {
@@ -101,12 +105,10 @@ public class MatchSetupController {
         return new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if(e.getDocument().getLength() == 0)
-                    return;
                 try {
                     model.rows = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
                     model.rowError = getErrorMsg(model.rows);
-                } catch (BadLocationException ex) {
+                } catch (Exception ex) {
                     model.rowError = "Field cannot be empty";
                 }
                 view.updateView(model);
@@ -114,12 +116,10 @@ public class MatchSetupController {
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if(e.getDocument().getLength() == 0)
-                    return;
                 try {
                     model.rows = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
                     model.rowError = getErrorMsg(model.rows);
-                } catch (BadLocationException ex) {
+                } catch (Exception ex) {
                     model.rowError = "Field cannot be empty";
                 }
                 view.updateView(model);
@@ -127,12 +127,10 @@ public class MatchSetupController {
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                if(e.getDocument().getLength() == 0)
-                    return;
                 try {
                     model.rows = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
                     model.rowError = getErrorMsg(model.rows);
-                } catch (BadLocationException ex) {
+                } catch (Exception ex) {
                     model.rowError = "Field cannot be empty";
                 }
                 view.updateView(model);
@@ -145,39 +143,69 @@ public class MatchSetupController {
         return new DocumentListener() {
             @Override
             public void insertUpdate(DocumentEvent e) {
-                if(e.getDocument().getLength() == 0)
-                    return;
                 try {
                     model.columns = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
                     model.columnError = getErrorMsg(model.columns);
-                } catch (BadLocationException ex) {
-                    model.rowError = "Field cannot be empty";
+                } catch (Exception ex) {
+                    model.columnError = "Field cannot be empty";
                 }
                 view.updateView(model);
             }
 
             @Override
             public void removeUpdate(DocumentEvent e) {
-                if(e.getDocument().getLength() == 0)
-                    return;
                 try {
                     model.columns = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
                     model.columnError = getErrorMsg(model.columns);
-                } catch (BadLocationException ex) {
-                    model.rowError = "Field cannot be empty";
+                } catch (Exception ex) {
+                    model.columnError = "Field cannot be empty";
                 }
                 view.updateView(model);
             }
 
             @Override
             public void changedUpdate(DocumentEvent e) {
-                if(e.getDocument().getLength() == 0)
-                    return;
                 try {
                     model.columns = Integer.parseInt(e.getDocument().getText(0, e.getDocument().getLength()));
                     model.columnError = getErrorMsg(model.columns);
-                } catch (BadLocationException ex) {
-                    model.rowError = "Field cannot be empty";
+                } catch (Exception ex) {
+                    model.columnError = "Field cannot be empty";
+                }
+                view.updateView(model);
+            }
+        };
+    }
+
+    public ItemListener getStandardListener()
+    {
+        return new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED)
+                {
+                    model.standard = true;
+                }
+                else
+                {
+                    model.standard = false;
+                }
+                view.updateView(model);
+            }
+        };
+    }
+
+    public ItemListener getDiagonalListener()
+    {
+        return new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange() == ItemEvent.SELECTED)
+                {
+                    model.allowDiagonalWins = true;
+                }
+                else
+                {
+                    model.allowDiagonalWins = false;
                 }
                 view.updateView(model);
             }
@@ -201,20 +229,8 @@ public class MatchSetupController {
         document = (PlainDocument) view.columnField.getDocument();
         document.setDocumentFilter(filter);
         document.addDocumentListener(getColumnListener());
-        view.isStandard.addItemListener(new ItemListener() {
-            @Override
-            public void itemStateChanged(ItemEvent e) {
-                if(e.getStateChange() == ItemEvent.SELECTED)
-                {
-                    model.standard = true;
-                }
-                else
-                {
-                    model.standard = false;
-                }
-                view.updateView(model);
-            }
-        });
+        view.isStandard.addItemListener(getStandardListener());
+        view.allowDiagonalWins.addItemListener(getDiagonalListener());
         view.OKButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

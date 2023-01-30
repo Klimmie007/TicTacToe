@@ -15,7 +15,6 @@ public class GameView extends JPanel {
     private Image image;
     private JToolBar bar;
     private JButton undo, redo, exit;
-    public JLabel footer;
 
     public JToolBar getBar()
     {
@@ -51,7 +50,6 @@ public class GameView extends JPanel {
         bar.add(undo);
         bar.add(redo);
         bar.add(exit);
-        footer = new JLabel("UwU");
         undo.setEnabled(false);
         redo.setEnabled(false);
     }
@@ -63,17 +61,16 @@ public class GameView extends JPanel {
 
     public void updateView(GameModel model)
     {
-        footer.setText(model.getGame().getPlayerNames());
-        footer.setPreferredSize(new Dimension(600, 20));
         setImage(model.getBoard());
         undo.setEnabled(model.canUndo());
         redo.setEnabled(model.canRedo());
         switch(model.getGame().getState())
         {
             case FINISHED -> {
+                Dimension d = getSize();
                 Graphics2D g = (Graphics2D) image.getGraphics();
                 g.setPaint(new Color(0f, 0f, 0f, 0.7f));
-                g.fillRect(IShape.TILESIZE, IShape.TILESIZE, IShape.TILESIZE, IShape.TILESIZE);
+                g.fillRect(((int)d.getWidth() - IShape.TILESIZE) / 2, ((int)d.getHeight() - IShape.TILESIZE) / 2, IShape.TILESIZE, IShape.TILESIZE);
                 g.setPaint(Color.white);
                 String result;
                 switch (model.getBoard().getState())
@@ -95,8 +92,10 @@ public class GameView extends JPanel {
                         break;
                     }
                 }
-                g.drawString(result, (float)(IShape.TILESIZE * 1.2), (float) (IShape.TILESIZE * 1.2));
-                g.drawString("Click to offer a rematch...", (float)(IShape.TILESIZE * 1.2), (float) (IShape.TILESIZE * 1.3));
+                g.drawString(result, (float)(IShape.TILESIZE * 0.2 + (d.getWidth() - IShape.TILESIZE) / 2),
+                        (float) (IShape.TILESIZE * 0.2 + (d.getHeight() - IShape.TILESIZE) / 2));
+                g.drawString("Click to offer a rematch...", (float)(IShape.TILESIZE * 0.2 + (d.getWidth() - IShape.TILESIZE) / 2),
+                        (float)(IShape.TILESIZE * 0.3 + (d.getHeight() - IShape.TILESIZE) / 2));
             }
         }
         repaint();

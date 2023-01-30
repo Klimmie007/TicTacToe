@@ -13,7 +13,7 @@ public class MatchSetupModel implements ComboBoxModel<String> {
     public String colors[] = new String[]{"White", "Cyan"};
     public String rowError, columnError;
     public Color color;
-    public boolean standard;
+    public boolean standard, allowDiagonalWins;
     private ListDataListener listener;
 
     public Player getHost()
@@ -28,6 +28,8 @@ public class MatchSetupModel implements ComboBoxModel<String> {
         color = Color.WHITE;
         standard = true;
         host = PlayerDB.player;
+        rowError = "";
+        columnError = "";
     }
 
     @Override
