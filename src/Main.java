@@ -23,9 +23,9 @@ public class Main {
 //        MatchChoiceModel model = new MatchChoiceModel();
 //        MatchChoiceController controller = new MatchChoiceController(view, model);
 
-        SignInView view = new SignInView();
-        SignInModel model = new SignInModel();
-        SignInController controller = new SignInController(model, view);
+        MatchSetupView view = new MatchSetupView();
+        MatchSetupModel model = new MatchSetupModel();
+        MatchSetupController controller = new MatchSetupController(model, view);
 
     }
 }

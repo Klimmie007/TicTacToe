@@ -130,6 +130,11 @@ public class Board {
             return backgroundColor == null ? "Standard" : rows + "x" + columns;
         }
 
+        public boolean allowsDiagonalWins()
+        {
+            return areDiagonalWinsAllowed;
+        }
+
         public void dontAllowDiagonalWins()
         {
             areDiagonalWinsAllowed = false;

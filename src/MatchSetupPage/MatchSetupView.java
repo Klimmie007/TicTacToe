@@ -1,18 +1,12 @@
 package MatchSetupPage;
 
-import GamePage.GameView;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.util.HashMap;
 
 public class MatchSetupView extends JPanel {
     public Checkbox isStandard, allowDiagonalWins;
     public JLabel rowLabel, columnLabel, colorLabel, rowErrorLabel, columnErrorLabel;
     public JTextField rowField, columnField;
-    public String colors[] = new String[]{"White", "Cyan"};
     public JButton OKButton;
     public JComboBox<String> colorChoices;
 
@@ -61,14 +55,14 @@ public class MatchSetupView extends JPanel {
 
     public void updateView(MatchSetupModel model)
     {
-        rowErrorLabel.setText(model.standard ? "" : model.rowError);
-        columnErrorLabel.setText(model.standard ? "" : model.columnError);
+        rowErrorLabel.setText(model.isStandard ? "" : model.rowError);
+        columnErrorLabel.setText(model.isStandard ? "" : model.columnError);
         colorChoices.setModel(model);
-        isStandard.setState(model.standard);
-        allowDiagonalWins.setEnabled(!model.standard);
-        rowField.setEnabled(!model.standard);
-        columnField.setEnabled(!model.standard);
-        colorChoices.setEnabled(!model.standard);
-        OKButton.setEnabled(model.standard || (model.rowError == "" && model.columnError == ""));
+        isStandard.setState(model.isStandard);
+        allowDiagonalWins.setEnabled(!model.isStandard);
+        rowField.setEnabled(!model.isStandard);
+        columnField.setEnabled(!model.isStandard);
+        colorChoices.setEnabled(!model.isStandard);
+        OKButton.setEnabled(model.isStandard || (model.rowError == "" && model.columnError == ""));
     }
 }

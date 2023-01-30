@@ -1,33 +1,23 @@
 package MatchSetupPage;
 
-import Player.Player;
-import Player.PlayerDB;
-
 import javax.swing.*;
 import javax.swing.event.ListDataListener;
 import java.awt.*;
 
 public class MatchSetupModel implements ComboBoxModel<String> {
-    private Player host;
     public int rows, columns;
     public String colors[] = new String[]{"White", "Cyan"};
     public String rowError, columnError;
-    public Color color;
-    public boolean standard, allowDiagonalWins;
+    public Color backgroundColor;
+    public boolean isStandard, allowDiagonalWins;
     private ListDataListener listener;
-
-    public Player getHost()
-    {
-        return host;
-    }
 
     public MatchSetupModel()
     {
         rows = 3;
         columns = 3;
-        color = Color.WHITE;
-        standard = true;
-        host = PlayerDB.player;
+        backgroundColor = Color.WHITE;
+        isStandard = true;
         rowError = "";
         columnError = "";
     }
@@ -35,7 +25,7 @@ public class MatchSetupModel implements ComboBoxModel<String> {
     @Override
     public void setSelectedItem(Object anItem) {
         try {
-            color = (Color) Color.class.getField(((String) anItem).toLowerCase()).get(null);
+            backgroundColor = (Color) Color.class.getField(((String) anItem).toLowerCase()).get(null);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,7 +33,7 @@ public class MatchSetupModel implements ComboBoxModel<String> {
 
     @Override
     public Object getSelectedItem() {
-        return color == Color.cyan ? "Cyan" : "White";
+        return backgroundColor == Color.cyan ? "Cyan" : "White";
     }
 
     @Override

@@ -6,11 +6,9 @@ import GamePage.GameModel;
 import GamePage.GameView;
 import MainWindow.MainWindowSingleton;
 
-import javax.swing.*;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 import javax.swing.text.*;
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ItemEvent;
@@ -183,11 +181,11 @@ public class MatchSetupController {
             public void itemStateChanged(ItemEvent e) {
                 if(e.getStateChange() == ItemEvent.SELECTED)
                 {
-                    model.standard = true;
+                    model.isStandard = true;
                 }
                 else
                 {
-                    model.standard = false;
+                    model.isStandard = false;
                 }
                 view.updateView(model);
             }
